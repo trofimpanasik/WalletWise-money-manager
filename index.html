@@ -19,15 +19,12 @@
             margin-top: 0;
         }
         .logo { font-size:2.2rem; font-weight:700; color:#2d7cff; letter-spacing:1px; }
-        .download-btns a { display:inline-block; margin-right:12px; padding:10px 22px; border-radius:6px; background:#2d7cff; color:#fff; text-decoration:none; font-weight:600; transition:.2s; }
-        .download-btns a:last-child { margin-right:0; background:#222; }
-        .download-btns a:hover { opacity:.85; }
         .hero {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            padding: 48px 0 32px;
+            padding: 24px 24px 0 24px;
             text-align: center;
         }
         .hero-text {
@@ -53,6 +50,13 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .download-btns a img {
+            height:50px;
+            width:auto;
+        }
+        .download-btns .google-btn img {
+            margin-left: : 10px;
+        }
         .feature { flex:1 1 260px; background:#fff; border-radius:12px; box-shadow:0 2px 12px #0001; padding:28px 22px; text-align:center; }
         .feature-icon { font-size:2.5rem; margin-bottom:14px; color:#2d7cff; }
         .feature-title { font-size:1.2rem; font-weight:700; margin-bottom:8px; }
@@ -72,7 +76,7 @@
         .slider-btn { background:#2d7cff; color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer; transition:.2s; z-index:2; }
         .slider-btn:hover { background:#174fa3; }
         .slider-track { display:flex; align-items:center; transition:transform 0.4s cubic-bezier(.4,0,.2,1); will-change:transform; }
-        .slider-track img { max-width:180px; width:100%; border-radius:16px; box-shadow:0 2px 12px #0001; margin:0 8px; user-select:none; pointer-events:none; }
+        .slider-track img { max-width:180px; height: 250px; width:100%; border-radius:16px; box-shadow:0 2px 12px #0001; margin:0 8px; user-select:none; pointer-events:none; }
         .reviews {
             background: #fff;
             border-radius: 12px;
@@ -129,6 +133,13 @@
             .slider { gap:4px; }
             .slider-btn { width:32px; height:32px; font-size:1.1rem; }
             .slider-track img { max-width:80px; }
+            .download-btns a img {
+                height:40px;
+                width:auto;
+            }
+            .download-btns .google-btn img {
+                margin-left: 0px;
+            }
         }
         @media (max-width:1200px) {
             .slider-track img { max-width:140px; }
@@ -145,10 +156,6 @@
                 <img src="assets/logo.png" alt="WalletWise Logo" style="height:38px;width:auto;">
                 <div class="logo">WalletWise</div>
             </div>
-            <div class="download-btns">
-                <a href="#" aria-label="Скачать в App Store">App Store</a>
-                <a href="#" aria-label="Скачать в Google Play">Google Play</a>
-            </div>
         </div>
     </header>
     <main>
@@ -156,9 +163,13 @@
             <div class="hero-text">
                 <div class="hero-title">Контролируйте финансы легко и удобно</div>
                 <div class="hero-desc">WalletWise — ваш надежный помощник для учета расходов, доходов и планирования бюджета. Простота, безопасность и аналитика в одном приложении.</div>
-                <div class="download-btns" style="justify-content:center;display:flex;gap:12px;">
-                    <a href="#">Скачать в App Store</a>
-                    <a href="#">Скачать в Google Play</a>
+                <div class="download-btns">
+                    <a href="#" aria-label="Скачать в App Store" style="text-decoration:none;">
+                        <img src="assets/appStoreIcon.png" alt="App Store">
+                    </a>
+                    <a href="#" class="google-btn" aria-label="Скачать в Google Play" style="text-decoration:none;">
+                        <img src="assets/googlePlayIcon.png" alt="Google Play">
+                    </a>
                 </div>
             </div>
             <div class="hero-img">
