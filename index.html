@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WalletWise — Учет финансов просто</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <style>
+        body { margin:0; font-family:'Lato',sans-serif; background:#f8fafc; color:#222; }
+        .container { max-width:1200px; margin:0 auto; padding:0 16px; }
+        header { background:#fff; box-shadow:0 2px 8px #0001; padding:24px 0 16px; }
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        header .download-btns {
+            margin-top: 0;
+        }
+        .logo { font-size:2.2rem; font-weight:700; color:#2d7cff; letter-spacing:1px; }
+        .download-btns a { display:inline-block; margin-right:12px; padding:10px 22px; border-radius:6px; background:#2d7cff; color:#fff; text-decoration:none; font-weight:600; transition:.2s; }
+        .download-btns a:last-child { margin-right:0; background:#222; }
+        .download-btns a:hover { opacity:.85; }
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 0 32px;
+            text-align: center;
+        }
+        .hero-text {
+            flex: 1 1 350px;
+            text-align: center;
+        }
+        .hero-title { font-size:2.5rem; font-weight:700; margin-bottom:18px; }
+        .hero-desc { font-size:1.2rem; margin-bottom:28px; color:#444; }
+        .hero-img {
+            text-align: center;
+        }
+        .hero-img img { max-width:320px; width:90%; border-radius:18px; box-shadow:0 4px 24px #0002; }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin: 48px auto;
+            justify-content: center;
+            text-align: center;
+            align-items: stretch;
+        }
+        .features > .feature {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .feature { flex:1 1 260px; background:#fff; border-radius:12px; box-shadow:0 2px 12px #0001; padding:28px 22px; text-align:center; }
+        .feature-icon { font-size:2.5rem; margin-bottom:14px; color:#2d7cff; }
+        .feature-title { font-size:1.2rem; font-weight:700; margin-bottom:8px; }
+        .feature-desc { color:#555; font-size:1rem; }
+        .screenshots {
+            text-align: center;
+        }
+        .screenshots img { max-width:180px; margin:0 12px 18px; border-radius:16px; box-shadow:0 2px 12px #0001; }
+        .slider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 32px 0;
+            position: relative;
+        }
+        .slider-btn { background:#2d7cff; color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:1.5rem; cursor:pointer; transition:.2s; z-index:2; }
+        .slider-btn:hover { background:#174fa3; }
+        .slider-track { display:flex; align-items:center; transition:transform 0.4s cubic-bezier(.4,0,.2,1); will-change:transform; }
+        .slider-track img { max-width:180px; width:100%; border-radius:16px; box-shadow:0 2px 12px #0001; margin:0 8px; user-select:none; pointer-events:none; }
+        .reviews {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #0001;
+            padding: 32px 0;
+            margin-bottom: 48px;
+            text-align: center;
+        }
+        .review-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .review { flex:1 1 260px; max-width:320px; background:#f3f6fa; border-radius:10px; padding:18px 16px; font-size:1rem; }
+        .review-user { font-weight:700; color:#2d7cff; margin-top:10px; }
+        footer { text-align:center; color:#888; font-size:.95rem; padding:24px 0 16px; }
+        @media (max-width:900px) {
+            header .container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-img {
+                margin-top: 24px;
+            }
+            .hero-text {
+                max-height: min-content;
+            }
+            .features {
+                flex-direction: column;
+                gap: 18px;
+            }
+            .feature {
+                width: 90%;
+                max-height: min-content;
+            }
+            .review-list {
+                flex-direction: column;
+                gap: 18px;
+                align-items: center;
+            }
+            .review {
+                min-width: 90%;
+                max-height: min-content;
+            }
+            .slider-track { width:90vw; }
+            .slider-track img { max-width:80vw; }
+        }
+        @media (max-width:600px) {
+            .slider { gap:4px; }
+            .slider-btn { width:32px; height:32px; font-size:1.1rem; }
+            .slider-track img { max-width:80px; }
+        }
+        @media (max-width:1200px) {
+            .slider-track img { max-width:140px; }
+        }
+        @media (max-width:900px) {
+            .slider-track img { max-width:110px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <img src="assets/logo.png" alt="WalletWise Logo" style="height:38px;width:auto;">
+                <div class="logo">WalletWise</div>
+            </div>
+            <div class="download-btns">
+                <a href="#" aria-label="Скачать в App Store">App Store</a>
+                <a href="#" aria-label="Скачать в Google Play">Google Play</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="container hero">
+            <div class="hero-text">
+                <div class="hero-title">Контролируйте финансы легко и удобно</div>
+                <div class="hero-desc">WalletWise — ваш надежный помощник для учета расходов, доходов и планирования бюджета. Простота, безопасность и аналитика в одном приложении.</div>
+                <div class="download-btns" style="justify-content:center;display:flex;gap:12px;">
+                    <a href="#">Скачать в App Store</a>
+                    <a href="#">Скачать в Google Play</a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="assets/main_page.svg" alt="WalletWise App Screenshot">
+            </div>
+        </section>
+        <section class="container features">
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Аналитика расходов</div>
+                <div class="feature-desc">Визуализация трат по категориям, графики и отчеты для лучшего понимания своих финансов.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Планирование бюджета</div>
+                <div class="feature-desc">Устанавливайте лимиты на категории, чтобы не выходить за рамки бюджета и достигать финансовых целей.</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Безопасность данных</div>
+                <div class="feature-desc">Ваши финансовые данные надежно защищены с помощью современных технологий шифрования.</div>
+            </div>
+        </section>
+        <section class="container screenshots">
+            <h2 style="margin-bottom:24px;font-size:2rem;">Скриншоты приложения</h2>
+            <div class="slider">
+                <button class="slider-btn" id="prev-btn" aria-label="Предыдущий слайд">&lt;</button>
+                <div class="slider-track-container" style="overflow:hidden;width:100%;">
+                    <div class="slider-track">
+                        <img src="assets/pages/page1.svg" alt="Скриншот 1">
+                        <img src="assets/pages/page2.svg" alt="Скриншот 2">
+                        <img src="assets/pages/page3.svg" alt="Скриншот 3">
+                        <img src="assets/pages/page4.svg" alt="Скриншот 4">
+                        <img src="assets/pages/page5.svg" alt="Скриншот 5">
+                        <img src="assets/pages/page6.svg" alt="Скриншот 6">
+                        <img src="assets/pages/page7.svg" alt="Скриншот 7">
+                        <img src="assets/pages/page8.svg" alt="Скриншот 8">
+                    </div>
+                </div>
+                <button class="slider-btn" id="next-btn" aria-label="Следующий слайд">&gt;</button>
+            </div>
+        </section>
+        <section class="container reviews">
+            <h2 style="margin-bottom:24px;font-size:2rem;">Отзывы пользователей</h2>
+            <div class="review-list">
+                <div class="review">
+                    "Отличное приложение! Помогло мне взять под контроль свои расходы и начать копить. Очень простой и понятный интерфейс."
+                    <div class="review-user">- Анна К.</div>
+                </div>
+                <div class="review">
+                    "Перепробовал много аналогов, но WalletWise — лучшее. Ничего лишнего, только самые нужные функции. Рекомендую!"
+                    <div class="review-user">- Михаил П.</div>
+                </div>
+                <div class="review">
+                    "Наконец-то я вижу, куда уходят деньги. Графики очень наглядные. Спасибо разработчикам!"
+                    <div class="review-user">- Елена С.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            &copy; 2025 WalletWise. Все права защищены.
+        </div>
+    </footer>
+    <script>
+        const track = document.querySelector('.slider-track');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentIndex = 0;
+        let startX = 0;
+        let isSwiping = false;
+
+        track.parentElement.addEventListener('touchstart', (e) => {
+            if (e.touches.length !== 1) return;
+            startX = e.touches[0].clientX;
+            isSwiping = true;
+        }, { passive: true });
+
+        track.parentElement.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            // Можно добавить визуальный эффект перетаскивания, если нужно
+        }, { passive: true });
+
+        track.parentElement.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+            if (Math.abs(diff) > 40) { // Порог свайпа
+                if (diff < 0 && !nextBtn.disabled) {
+                    currentIndex++;
+                    updateSlider();
+                } else if (diff > 0 && !prevBtn.disabled) {
+                    currentIndex--;
+                    updateSlider();
+                }
+            }
+            isSwiping = false;
+        });
+        function updateSlider() {
+            const slideWidth = track.querySelector('img').clientWidth + 16;
+            const containerWidth = track.parentElement.clientWidth;
+            const slidesInView = Math.floor(containerWidth / slideWidth);
+            const maxIndex = track.children.length - slidesInView;
+            if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+            }
+            if (currentIndex < 0) {
+                currentIndex = 0;
+            }
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === maxIndex;
+        }
+        nextBtn.addEventListener('click', () => {
+            currentIndex++;
+            updateSlider();
+        });
+        prevBtn.addEventListener('click', () => {
+            currentIndex--;
+            updateSlider();
+        });
+        window.addEventListener('resize', updateSlider);
+        updateSlider();
+    </script>
+</body>
+</html>
+
+
