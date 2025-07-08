@@ -357,6 +357,50 @@
             margin-right: auto;
         }
 
+        /* Стили для футера */
+        footer {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.95rem;
+            padding: 44px 0 44px;
+            border-top: 1px solid var(--shadow-color);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* Адаптивность для футера */
+        @media (max-width: 768px) {
+            footer .container {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
         @media (max-width: 900px) {
             header .container {
                 flex-direction: column;
@@ -418,10 +462,10 @@
 <body>
 <header>
     <div class="container">
-        <div style="display:flex;align-items:center;gap:12px;">
+        <a href="index.html" style="text-decoration: none; display:flex; align-items:center; gap:12px;">
             <img src="assets/logo.png" alt="WalletWise Logo" style="height:48px;width:auto;">
             <div class="logo">WalletWise</div>
-        </div>
+        </a>
     </div>
 </header>
 <main>
@@ -498,7 +542,11 @@
 </main>
 <footer>
     <div class="container">
-        &copy; 2025 WalletWise. Все права защищены.
+        <span>&copy; 2025 WalletWise. Все права защищены.</span>
+        <div class="footer-links">
+            <a href="privacy.html">Политика конфиденциальности</a>
+            <a href="terms.html">Правила пользования</a>
+        </div>
     </div>
 </footer>
 <!-- Подключаем GLightbox JS -->
