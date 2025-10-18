@@ -528,6 +528,22 @@
             <div class="feature-title">Data Security</div>
             <div class="feature-desc">Your financial data is securely protected using modern encryption technologies.</div>
         </div>
+        <!-- Новые преимущества -->
+        <div class="feature">
+            <div class="feature-icon">🤖</div>
+            <div class="feature-title">Artificial Intelligence</div>
+            <div class="feature-desc">Fill in information from receipt photos — amounts and categories are recognized automatically.</div>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📈</div>
+            <div class="feature-title">A bot that analyzes your spending</div>
+            <div class="feature-desc">Get personalized insights and recommendations to optimize expenses based on your transactions.</div>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🗓️</div>
+            <div class="feature-title">Scheduled transactions</div>
+            <div class="feature-desc">Create templates that will be entered automatically.</div>
+        </div>
     </section>
     <section class="container screenshots">
         <h2 style="margin-bottom:24px;font-size:2rem;">App Screenshots</h2>
@@ -605,7 +621,11 @@
         link.href = src;
         link.className = 'glightbox';
         link.setAttribute('data-gallery', 'gallery1');
-        link.setAttribute('data-glightbox', `title: ${alt}`);
+
+        // Заголовок в лайтбоксе c номером скриншота, если он есть
+        let screenshotNum = alt.match(/\d+/);
+        const title = screenshotNum ? `Screenshot №${screenshotNum[0]}` : alt;
+        link.setAttribute('data-glightbox', `title: ${title}; descPosition: bottom;`);
 
         // Само изображение
         const newImg = document.createElement('img');
@@ -819,39 +839,6 @@
     });
 
     // Инициализация лайтбокса
-    function createLightboxSlide(img, isClone) {
-        const src = img.src;
-        const alt = img.alt;
-
-        // Получаем номер скриншота из имени файла или альт-текста
-        let screenshotNum = alt.match(/\d+/) || '';
-        if (screenshotNum) {
-            screenshotNum = screenshotNum[0];
-        }
-
-        // Создаем обертку-ссылку для лайтбокса
-        const link = document.createElement('a');
-        link.href = src;
-        link.className = 'glightbox';
-        link.setAttribute('data-gallery', 'gallery1');
-
-        // Указываем заголовок для лайтбокса с номером скриншота
-        link.setAttribute('data-glightbox',
-            `title: Screenshot ${screenshotNum ? '№' + screenshotNum : ''}; descPosition: bottom;`);
-
-        // Само изображение
-        const newImg = document.createElement('img');
-        newImg.src = src;
-        newImg.alt = alt;
-        newImg.loading = 'eager';
-        if (isClone) newImg.classList.add('clone');
-
-        // Добавляем изображение в ссылку
-        link.appendChild(newImg);
-
-        return link;
-    }
-
     function initLightbox() {
         if (window.GLightbox) {
             const lightbox = GLightbox({
