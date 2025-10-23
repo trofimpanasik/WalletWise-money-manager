@@ -1,920 +1,1078 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WalletWise — Finance Tracking Made Simple</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <!-- Подключаем GLightbox CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-    <style>
-        :root {
-            /* Светлая тема по умолчанию */
-            --primary: #45b69c;
-            --accent: #f55d3e;
-            --surface: #E2DAD6;
-            --background: #F5EDED;
-            --text: #463730;
-            --disabled: #8a8a8a;
-
-            /* Переменные для взаимодействия */
-            --header-bg: #fff;
-            --feature-bg: #fff;
-            --review-bg: #fff;
-            --review-item-bg: #f3f6fa;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-
-            /* Переход для плавной смены темы */
-            transition: all 0.3s ease;
-        }
-
-        @media (prefers-color-scheme: dark) {
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>WalletWise — Finance Tracking Made Simple</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" type="image/png" href="logo.png" />
+        <link rel="apple-touch-icon" href="logo.png" />
+        <!-- Подключаем GLightbox CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"
+        />
+        <style>
             :root {
-                /* Темная тема */
-                --primary: #7eb2dd;
-                --accent: #f15f5c;
-                --background: #343436;
-                --surface: #2a2a2a;
-                --text: #eee0cb;
-                --disabled: #696a6e;
+                /* Светлая тема по умолчанию */
+                --primary: #45b69c;
+                --accent: #f55d3e;
+                --surface: #e2dad6;
+                --background: #f5eded;
+                --text: #463730;
+                --disabled: #8a8a8a;
 
                 /* Переменные для взаимодействия */
-                --header-bg: #2a2a2a;
-                --feature-bg: #2a2a2a;
-                --review-bg: #2a2a2a;
-                --review-item-bg: #343436;
-                --shadow-color: rgba(0, 0, 0, 0.3);
+                --header-bg: #fff;
+                --feature-bg: #fff;
+                --review-bg: #fff;
+                --review-item-bg: #f3f6fa;
+                --shadow-color: rgba(0, 0, 0, 0.1);
+
+                /* Переход для плавной смены темы */
+                transition: all 0.3s ease;
             }
-        }
 
-        body {
-            margin: 0;
-            font-family: 'Lato', sans-serif;
-            background: var(--background);
-            color: var(--text);
-            transition: background 0.3s ease, color 0.3s ease;
-        }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    /* Темная тема */
+                    --primary: #7eb2dd;
+                    --accent: #f15f5c;
+                    --background: #343436;
+                    --surface: #2a2a2a;
+                    --text: #eee0cb;
+                    --disabled: #696a6e;
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+                    /* Переменные для взаимодействия */
+                    --header-bg: #2a2a2a;
+                    --feature-bg: #2a2a2a;
+                    --review-bg: #2a2a2a;
+                    --review-item-bg: #343436;
+                    --shadow-color: rgba(0, 0, 0, 0.3);
+                }
+            }
 
-        header {
-            background: var(--header-bg);
-            box-shadow: 0 2px 8px var(--shadow-color);
-            padding: 24px 0 16px;
-            transition: background 0.3s ease, box-shadow 0.3s ease;
-        }
+            body {
+                margin: 0;
+                font-family: "Lato", sans-serif;
+                background: var(--background);
+                color: var(--text);
+                transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+            }
 
-        header .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 16px;
+            }
 
-        header .download-btns {
-            margin-top: 0;
-        }
+            header {
+                background: var(--header-bg);
+                box-shadow: 0 2px 8px var(--shadow-color);
+                padding: 24px 0 16px;
+                transition:
+                    background 0.3s ease,
+                    box-shadow 0.3s ease;
+            }
 
-        .logo {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
+            header .container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 24px;
+            }
 
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            padding: 24px 24px 0 24px;
-            text-align: center;
-        }
+            header .download-btns {
+                margin-top: 0;
+            }
 
-        .hero-text {
-            flex: 1 1 350px;
-            text-align: center;
-        }
+            .logo {
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: var(--primary);
+                letter-spacing: 1px;
+                transition: color 0.3s ease;
+            }
 
-        .hero-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 18px;
-            color: var(--text);
-        }
+            .hero {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                padding: 24px 24px 0 24px;
+                text-align: center;
+            }
 
-        .hero-desc {
-            font-size: 1.2rem;
-            margin-bottom: 28px;
-            color: var(--text);
-            opacity: 0.8;
-        }
+            .hero-text {
+                flex: 1 1 350px;
+                text-align: center;
+            }
 
-        .hero-img {
-            text-align: center;
-        }
+            .hero-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 18px;
+                color: var(--text);
+            }
 
-        .hero-img img {
-            max-width: 320px;
-            width: 90%;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px var(--shadow-color);
-            transition: box-shadow 0.3s ease;
-        }
+            .hero-desc {
+                font-size: 1.2rem;
+                margin-bottom: 28px;
+                color: var(--text);
+                opacity: 0.8;
+            }
 
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 32px;
-            margin: 48px auto;
-            justify-content: center;
-            text-align: center;
-            align-items: stretch;
-        }
+            .hero-img {
+                text-align: center;
+            }
 
-        .features > .feature {
-            margin-left: auto;
-            margin-right: auto;
-        }
+            .hero-img img {
+                max-width: 320px;
+                width: 90%;
+                border-radius: 18px;
+                box-shadow: 0 4px 24px var(--shadow-color);
+                transition: box-shadow 0.3s ease;
+            }
 
-        .download-btns a img {
-            height: 50px;
-            width: auto;
-        }
-
-        .download-btns .google-btn img {
-            margin-left: 10px;
-        }
-
-        .feature {
-            flex: 1 1 260px;
-            background: var(--feature-bg);
-            border-radius: 12px;
-            box-shadow: 0 2px 12px var(--shadow-color);
-            padding: 28px 22px;
-            text-align: center;
-            transition: background 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 14px;
-            color: var(--primary);
-            transition: color 0.3s ease;
-        }
-
-        .feature-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .feature-desc {
-            color: var(--text);
-            opacity: 0.8;
-            font-size: 1rem;
-        }
-
-        .screenshots {
-            text-align: center;
-        }
-
-        .screenshots h2 {
-            color: var(--text);
-        }
-
-        .screenshots img {
-            max-width: 180px;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px var(--shadow-color);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .slider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin: 32px 0;
-            position: relative;
-        }
-
-        .slider-btn {
-            background: var(--primary);
-            color: var(--background);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: 0.2s;
-            z-index: 2;
-        }
-
-        .slider-btn:hover {
-            background: var(--accent);
-        }
-
-        .slider-track {
-            display: flex;
-            align-items: center;
-            transition: transform 0.4s cubic-bezier(.4,0,.2,1);
-            will-change: transform;
-        }
-
-        .slider-track a {
-            display: block;
-            margin: 0 8px;
-            cursor: pointer;
-        }
-
-        .slider-track img {
-            max-width: 180px;
-            height: 250px;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px var(--shadow-color);
-            user-select: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .slider-track img:hover {
-            transform: scale(1.05) translateZ(0);
-        }
-
-        .reviews {
-            background: var(--review-bg);
-            border-radius: 12px;
-            box-shadow: 0 2px 12px var(--shadow-color);
-            padding: 32px 0;
-            margin-bottom: 48px;
-            text-align: center;
-            transition: background 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .reviews h2 {
-            color: var(--text);
-        }
-
-        .review-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            justify-content: center;
-        }
-
-        .review {
-            flex: 1 1 260px;
-            max-width: 320px;
-            background: var(--review-item-bg);
-            border-radius: 10px;
-            padding: 18px 16px;
-            font-size: 1rem;
-            color: var(--text);
-            transition: background 0.3s ease;
-        }
-
-        .review-user {
-            font-weight: 700;
-            color: var(--primary);
-            margin-top: 10px;
-            transition: color 0.3s ease;
-        }
-
-        footer {
-            text-align: center;
-            color: var(--text);
-            opacity: 0.7;
-            font-size: 0.95rem;
-            padding: 24px 0 16px;
-        }
-
-        :root {
-            /* Остальные переменные... */
-            --lightbox-btn-bg: var(--primary);
-            --lightbox-btn-color: var(--background);
-            --lightbox-bg: var(--surface);
-            --lightbox-text: var(--text);
-        }
-
-        .glightbox-container .gclose {
-            background: var(--surface) !important;
-            color: var(--text) !important;
-            width: 46px !important;
-            height: 46px !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4) !important;
-        }
-        .glightbox-container .gnext,
-        .glightbox-container .gprev {
-            opacity: 0.9 !important;
-            width: 46px !important;
-            height: 46px !important;
-            background: var(--primary) !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4) !important;
-        }
-
-        /* Увеличиваем размер иконок */
-        .glightbox-container svg {
-            width: 22px !important;
-            height: 22px !important;
-            color: var(--background) !important;
-            fill: var(--background) !important;
-        }
-
-        /* Увеличиваем отступы для лучшей видимости */
-        .glightbox-container .gnext {
-            right: 20px !important;
-        }
-
-        .glightbox-container .gprev {
-            left: 20px !important;
-        }
-
-        .glightbox-container .gclose {
-            top: 20px !important;
-            right: 20px !important;
-        }
-
-        /* Фиксим отступы слева для слайдера */
-        .slider-track-container {
-            margin-left: 0;
-            padding-left: 0;
-        }
-
-        /* Контейнер слайдера */
-        .slider {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Стили для футера */
-        footer {
-            color: var(--text);
-            opacity: 0.8;
-            font-size: 0.95rem;
-            padding: 44px 0 44px;
-            border-top: 1px solid var(--shadow-color);
-        }
-
-        footer .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-
-        /* Кнопки контактов в футере */
-        .footer-contacts {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-        }
-        .footer-contacts a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--primary);
-            color: var(--background);
-            text-decoration: none;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: background 0.2s ease;
-        }
-        .footer-contacts a:hover { background: var(--accent); }
-        .footer-contacts a img { width: 18px; height: 18px; display: inline-block; }
-
-        /* Адаптивность для футера */
-        @media (max-width: 768px) {
-            footer .container {
-                flex-direction: column;
+            .features {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 32px;
+                margin: 48px auto;
                 justify-content: center;
                 text-align: center;
+                align-items: stretch;
             }
-            .footer-contacts { justify-content: center; }
-        }
 
-        @media (max-width: 900px) {
-            header .container {
-                flex-direction: column;
-                gap: 12px;
+            .features > .feature {
+                margin-left: auto;
+                margin-right: auto;
             }
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero-img {
-                margin-top: 24px;
-            }
-            .hero-text {
-                max-height: min-content;
-            }
-            .features {
-                flex-direction: column;
-                gap: 18px;
-            }
-            .feature {
-                width: 90%;
-                max-height: min-content;
-            }
-            .review-list {
-                flex-direction: column;
-                gap: 18px;
-                align-items: center;
-            }
-            .review {
-                min-width: 90%;
-                max-height: min-content;
-            }
-            .slider-track { width: 90vw; }
-            .slider-track img { max-width: 80vw; }
-        }
 
-        @media (max-width: 600px) {
-            .slider { gap: 4px; }
-            .slider-btn { width: 32px; height: 32px; font-size: 1.1rem; }
-            .slider-track img { max-width: 80px; }
             .download-btns a img {
-                height: 40px;
+                height: 50px;
                 width: auto;
             }
+
             .download-btns .google-btn img {
-                margin-left: 0px;
+                margin-left: 10px;
             }
-        }
 
-        @media (max-width: 1200px) {
-            .slider-track img { max-width: 140px; }
-        }
+            .feature {
+                flex: 1 1 260px;
+                background: var(--feature-bg);
+                border-radius: 12px;
+                box-shadow: 0 2px 12px var(--shadow-color);
+                padding: 28px 22px;
+                text-align: center;
+                transition:
+                    background 0.3s ease,
+                    box-shadow 0.3s ease;
+            }
 
-        @media (max-width: 900px) {
-            .slider-track img { max-width: 110px; }
-        }
-    </style>
-</head>
-<body>
-<header>
-    <div class="container">
-        <a href="index.html" style="text-decoration: none; display:flex; align-items:center; gap:12px;">
-            <img src="logo.png" alt="WalletWise Logo" style="height:48px;width:auto;">
-            <div class="logo">WalletWise</div>
-        </a>
-    </div>
-</header>
-<main>
-    <section class="container hero">
-        <div class="hero-text">
-            <div class="hero-title">Control your finances easily and conveniently</div>
-            <div class="hero-desc">WalletWise — your reliable assistant for tracking expenses, income and budget planning. Simplicity, security and analytics in one application.</div>
-            <div class="download-btns">
-                <a href="#" aria-label="Download on App Store" style="text-decoration:none;">
-                    <img src="appStoreIcon.png" alt="App Store">
-                </a>
-                <a href="#" class="google-btn" aria-label="Get it on Google Play" style="text-decoration:none;">
-                    <img src="googlePlayIcon.png" alt="Google Play">
+            .feature-icon {
+                font-size: 2.5rem;
+                margin-bottom: 14px;
+                color: var(--primary);
+                transition: color 0.3s ease;
+            }
+
+            .feature-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin-bottom: 8px;
+                color: var(--text);
+            }
+
+            .feature-desc {
+                color: var(--text);
+                opacity: 0.8;
+                font-size: 1rem;
+            }
+
+            .screenshots {
+                text-align: center;
+            }
+
+            .screenshots h2 {
+                color: var(--text);
+            }
+
+            .screenshots img {
+                max-width: 180px;
+                border-radius: 16px;
+                box-shadow: 0 2px 12px var(--shadow-color);
+                transition: box-shadow 0.3s ease;
+            }
+
+            .slider {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
+                margin: 32px 0;
+                position: relative;
+            }
+
+            .slider-btn {
+                background: var(--primary);
+                color: var(--background);
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: 0.2s;
+                z-index: 2;
+            }
+
+            .slider-btn:hover {
+                background: var(--accent);
+            }
+
+            .slider-track {
+                display: flex;
+                align-items: center;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                will-change: transform;
+            }
+
+            .slider-track a {
+                display: block;
+                margin: 0 8px;
+                cursor: pointer;
+            }
+
+            .slider-track img {
+                max-width: 180px;
+                height: 250px;
+                border-radius: 16px;
+                box-shadow: 0 2px 12px var(--shadow-color);
+                user-select: none;
+                transition:
+                    transform 0.3s ease,
+                    box-shadow 0.3s ease;
+            }
+
+            .slider-track img:hover {
+                transform: scale(1.05) translateZ(0);
+            }
+
+            .reviews {
+                background: var(--review-bg);
+                border-radius: 12px;
+                box-shadow: 0 2px 12px var(--shadow-color);
+                padding: 32px 0;
+                margin-bottom: 48px;
+                text-align: center;
+                transition:
+                    background 0.3s ease,
+                    box-shadow 0.3s ease;
+            }
+
+            .reviews h2 {
+                color: var(--text);
+            }
+
+            .review-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 24px;
+                justify-content: center;
+            }
+
+            .review {
+                flex: 1 1 260px;
+                max-width: 320px;
+                background: var(--review-item-bg);
+                border-radius: 10px;
+                padding: 18px 16px;
+                font-size: 1rem;
+                color: var(--text);
+                transition: background 0.3s ease;
+            }
+
+            .review-user {
+                font-weight: 700;
+                color: var(--primary);
+                margin-top: 10px;
+                transition: color 0.3s ease;
+            }
+
+            footer {
+                text-align: center;
+                color: var(--text);
+                opacity: 0.7;
+                font-size: 0.95rem;
+                padding: 24px 0 16px;
+            }
+
+            :root {
+                /* Остальные переменные... */
+                --lightbox-btn-bg: var(--primary);
+                --lightbox-btn-color: var(--background);
+                --lightbox-bg: var(--surface);
+                --lightbox-text: var(--text);
+            }
+
+            .glightbox-container .gclose {
+                background: var(--surface) !important;
+                color: var(--text) !important;
+                width: 46px !important;
+                height: 46px !important;
+                border-radius: 50% !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+            }
+            .glightbox-container .gnext,
+            .glightbox-container .gprev {
+                opacity: 0.9 !important;
+                width: 46px !important;
+                height: 46px !important;
+                background: var(--primary) !important;
+                border-radius: 50% !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+            }
+
+            /* Увеличиваем размер иконок */
+            .glightbox-container svg {
+                width: 22px !important;
+                height: 22px !important;
+                color: var(--background) !important;
+                fill: var(--background) !important;
+            }
+
+            /* Увеличиваем отступы для лучшей видимости */
+            .glightbox-container .gnext {
+                right: 20px !important;
+            }
+
+            .glightbox-container .gprev {
+                left: 20px !important;
+            }
+
+            .glightbox-container .gclose {
+                top: 20px !important;
+                right: 20px !important;
+            }
+
+            /* Фиксим отступы слева для слайдера */
+            .slider-track-container {
+                margin-left: 0;
+                padding-left: 0;
+            }
+
+            /* Контейнер слайдера */
+            .slider {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* Стили для футера */
+            footer {
+                color: var(--text);
+                opacity: 0.8;
+                font-size: 0.95rem;
+                padding: 44px 0 44px;
+                border-top: 1px solid var(--shadow-color);
+            }
+
+            footer .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .footer-links {
+                display: flex;
+                gap: 24px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .footer-links a {
+                color: var(--text);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .footer-links a:hover {
+                color: var(--primary);
+                text-decoration: underline;
+            }
+
+            /* Кнопки контактов в футере */
+            .footer-contacts {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+            }
+            .footer-contacts a {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: var(--primary);
+                color: var(--background);
+                text-decoration: none;
+                padding: 10px 14px;
+                border-radius: 8px;
+                font-weight: 700;
+                transition: background 0.2s ease;
+            }
+            .footer-contacts a:hover {
+                background: var(--accent);
+            }
+            .footer-contacts a img {
+                width: 18px;
+                height: 18px;
+                display: inline-block;
+            }
+
+            /* Адаптивность для футера */
+            @media (max-width: 768px) {
+                footer .container {
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                }
+                .footer-contacts {
+                    justify-content: center;
+                }
+            }
+
+            @media (max-width: 900px) {
+                header .container {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+                .hero {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .hero-img {
+                    margin-top: 24px;
+                }
+                .hero-text {
+                    max-height: min-content;
+                }
+                .features {
+                    flex-direction: column;
+                    gap: 18px;
+                }
+                .feature {
+                    width: 90%;
+                    max-height: min-content;
+                }
+                .review-list {
+                    flex-direction: column;
+                    gap: 18px;
+                    align-items: center;
+                }
+                .review {
+                    min-width: 90%;
+                    max-height: min-content;
+                }
+                .slider-track {
+                    width: 90vw;
+                }
+                .slider-track img {
+                    max-width: 80vw;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .slider {
+                    gap: 4px;
+                }
+                .slider-btn {
+                    width: 32px;
+                    height: 32px;
+                    font-size: 1.1rem;
+                }
+                .slider-track img {
+                    max-width: 80px;
+                }
+                .download-btns a img {
+                    height: 40px;
+                    width: auto;
+                }
+                .download-btns .google-btn img {
+                    margin-left: 0px;
+                }
+            }
+
+            @media (max-width: 1200px) {
+                .slider-track img {
+                    max-width: 140px;
+                }
+            }
+
+            @media (max-width: 900px) {
+                .slider-track img {
+                    max-width: 110px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <a
+                    href="index.html"
+                    style="
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    "
+                >
+                    <img
+                        src="logo.png"
+                        alt="WalletWise Logo"
+                        style="height: 48px; width: auto"
+                    />
+                    <div class="logo">WalletWise</div>
                 </a>
             </div>
-        </div>
-        <div class="hero-img">
-            <img src="main_page.png" alt="WalletWise App Screenshot">
-        </div>
-    </section>
-    <section class="container features">
-        <div class="feature">
-            <div class="feature-icon">📊</div>
-            <div class="feature-title">Expense Analytics</div>
-            <div class="feature-desc">Visualization of spending by categories, charts and reports for better understanding of your finances.</div>
-        </div>
-        <div class="feature">
-            <div class="feature-icon">🎯</div>
-            <div class="feature-title">Budget Planning</div>
-            <div class="feature-desc">Set limits on categories to stay within budget and achieve your financial goals.</div>
-        </div>
-        <div class="feature">
-            <div class="feature-icon">🔒</div>
-            <div class="feature-title">Data Security</div>
-            <div class="feature-desc">Your financial data is securely protected using modern encryption technologies.</div>
-        </div>
-        <!-- Новые преимущества -->
-        <div class="feature">
-            <div class="feature-icon">🤖</div>
-            <div class="feature-title">Artificial Intelligence</div>
-            <div class="feature-desc">Fill in information from receipt photos — amounts and categories are recognized automatically.</div>
-        </div>
-        <div class="feature">
-            <div class="feature-icon">📈</div>
-            <div class="feature-title">A bot that analyzes your spending</div>
-            <div class="feature-desc">Get personalized insights and recommendations to optimize expenses based on your transactions.</div>
-        </div>
-        <div class="feature">
-            <div class="feature-icon">🗓️</div>
-            <div class="feature-title">Scheduled transactions</div>
-            <div class="feature-desc">Create templates that will be entered automatically.</div>
-        </div>
-    </section>
-    <section class="container screenshots">
-        <h2 style="margin-bottom:24px;font-size:2rem;">App Screenshots</h2>
-        <div class="slider">
-            <button class="slider-btn" id="prev-btn" aria-label="Previous slide">&lt;</button>
-            <div class="slider-track-container" style="overflow:hidden;width:100%;">
-                <div class="slider-track">
-                    <img src="pages/1.png" alt="Screenshot 1">
-                    <img src="pages/2.png" alt="Screenshot 2">
-                    <img src="pages/3.png" alt="Screenshot 3">
-                    <img src="pages/4.png" alt="Screenshot 4">
-                    <img src="pages/5.png" alt="Screenshot 5">
-                    <img src="pages/6.png" alt="Screenshot 6">
-                    <img src="pages/7.png" alt="Screenshot 7">
-                    <img src="pages/8.png" alt="Screenshot 8">
+        </header>
+        <main>
+            <section class="container hero">
+                <div class="hero-text">
+                    <div class="hero-title">
+                        Control your finances easily and conveniently
+                    </div>
+                    <div class="hero-desc">
+                        WalletWise — your reliable assistant for tracking
+                        expenses, income and budget planning. Simplicity,
+                        security and analytics in one application.
+                    </div>
+                    <div class="download-btns">
+                        <a
+                            href="https://apps.apple.com/by/app/walletwise-money-manager/id6744917084"
+                            aria-label="Download on App Store"
+                            style="text-decoration: none"
+                        >
+                            <img src="appStoreIcon.png" alt="App Store" />
+                        </a>
+                        <a
+                            href="https://play.google.com/store/apps/details?id=com.trofimPanasik.moneyManagerTrofimApp"
+                            class="google-btn"
+                            aria-label="Get it on Google Play"
+                            style="text-decoration: none"
+                        >
+                            <img src="googlePlayIcon.png" alt="Google Play" />
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <img src="main_page.png" alt="WalletWise App Screenshot" />
+                </div>
+            </section>
+            <section class="container features">
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Expense Analytics</div>
+                    <div class="feature-desc">
+                        Visualization of spending by categories, charts and
+                        reports for better understanding of your finances.
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Budget Planning</div>
+                    <div class="feature-desc">
+                        Set limits on categories to stay within budget and
+                        achieve your financial goals.
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Data Security</div>
+                    <div class="feature-desc">
+                        Your financial data is securely protected using modern
+                        encryption technologies.
+                    </div>
+                </div>
+                <!-- Новые преимущества -->
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-title">Artificial Intelligence</div>
+                    <div class="feature-desc">
+                        Fill in information from receipt photos — amounts and
+                        categories are recognized automatically.
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-title">
+                        A bot that analyzes your spending
+                    </div>
+                    <div class="feature-desc">
+                        Get personalized insights and recommendations to
+                        optimize expenses based on your transactions.
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🗓️</div>
+                    <div class="feature-title">Scheduled transactions</div>
+                    <div class="feature-desc">
+                        Create templates that will be entered automatically.
+                    </div>
+                </div>
+            </section>
+            <section class="container screenshots">
+                <h2 style="margin-bottom: 24px; font-size: 2rem">
+                    App Screenshots
+                </h2>
+                <div class="slider">
+                    <button
+                        class="slider-btn"
+                        id="prev-btn"
+                        aria-label="Previous slide"
+                    >
+                        &lt;
+                    </button>
+                    <div
+                        class="slider-track-container"
+                        style="overflow: hidden; width: 100%"
+                    >
+                        <div class="slider-track">
+                            <img src="pages/1.png" alt="Screenshot 1" />
+                            <img src="pages/2.png" alt="Screenshot 2" />
+                            <img src="pages/3.png" alt="Screenshot 3" />
+                            <img src="pages/4.png" alt="Screenshot 4" />
+                            <img src="pages/5.png" alt="Screenshot 5" />
+                            <img src="pages/6.png" alt="Screenshot 6" />
+                            <img src="pages/7.png" alt="Screenshot 7" />
+                            <img src="pages/8.png" alt="Screenshot 8" />
+                        </div>
+                    </div>
+                    <button
+                        class="slider-btn"
+                        id="next-btn"
+                        aria-label="Next slide"
+                    >
+                        &gt;
+                    </button>
+                </div>
+            </section>
+            <section class="container reviews">
+                <h2 style="margin-bottom: 24px; font-size: 2rem">
+                    User Reviews
+                </h2>
+                <div class="review-list">
+                    <div class="review">
+                        "Excellent app! It helped me take control of my expenses
+                        and start saving. Very simple and intuitive interface."
+                        <div class="review-user">- Anna K.</div>
+                    </div>
+                    <div class="review">
+                        "I've tried many alternatives, but WalletWise is the
+                        best. Nothing unnecessary, only the most essential
+                        features. Highly recommend!"
+                        <div class="review-user">- Michael P.</div>
+                    </div>
+                    <div class="review">
+                        "Finally I can see where my money goes. The charts are
+                        very clear. Thanks to the developers!"
+                        <div class="review-user">- Elena S.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="container">
+                <span>&copy; 2025 WalletWise. All rights reserved.</span>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-contacts">
+                    <a
+                        href="https://t.me/+vn7rDEHcgKo2ZDJi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Contact via Telegram"
+                    >
+                        <img src="telegram.png" alt="" aria-hidden="true" />
+                        Telegram
+                    </a>
+                    <a
+                        href="mailto:trofimpanasikapps@gmail.com?subject=Feedback"
+                        aria-label="Contact via Email"
+                    >
+                        <img src="gmail.png" alt="" aria-hidden="true" /> Email
+                    </a>
                 </div>
             </div>
-            <button class="slider-btn" id="next-btn" aria-label="Next slide">&gt;</button>
-        </div>
-    </section>
-    <section class="container reviews">
-        <h2 style="margin-bottom:24px;font-size:2rem;">User Reviews</h2>
-        <div class="review-list">
-            <div class="review">
-                "Excellent app! It helped me take control of my expenses and start saving. Very simple and intuitive interface."
-                <div class="review-user">- Anna K.</div>
-            </div>
-            <div class="review">
-                "I've tried many alternatives, but WalletWise is the best. Nothing unnecessary, only the most essential features. Highly recommend!"
-                <div class="review-user">- Michael P.</div>
-            </div>
-            <div class="review">
-                "Finally I can see where my money goes. The charts are very clear. Thanks to the developers!"
-                <div class="review-user">- Elena S.</div>
-            </div>
-        </div>
-    </section>
-</main>
-<footer>
-    <div class="container">
-        <span>&copy; 2025 WalletWise. All rights reserved.</span>
-        <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-        </div>
-        <div class="footer-contacts">
-            <a href="https://t.me/+vn7rDEHcgKo2ZDJi" target="_blank" rel="noopener noreferrer" aria-label="Contact via Telegram">
-                <img src="telegram.png" alt="" aria-hidden="true"> Telegram
-            </a>
-            <a href="mailto:trofimpanasikapps@gmail.com?subject=Feedback" aria-label="Contact via Email">
-                <img src="gmail.png" alt="" aria-hidden="true"> Email
-            </a>
-        </div>
-    </div>
-</footer>
-<!-- Подключаем GLightbox JS -->
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script>
-    const sliderContainer = document.querySelector('.slider-track-container');
-    const track = document.querySelector('.slider-track');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
+        </footer>
+        <!-- Подключаем GLightbox JS -->
+        <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+        <script>
+            const sliderContainer = document.querySelector(
+                ".slider-track-container",
+            );
+            const track = document.querySelector(".slider-track");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
 
-    let originalSlides = Array.from(track.children);
-    const slideCount = originalSlides.length;
-    let slideWidth = 0;
+            let originalSlides = Array.from(track.children);
+            const slideCount = originalSlides.length;
+            let slideWidth = 0;
 
-    // Функция для создания слайда с поддержкой лайтбокса
-    function createLightboxSlide(img, isClone) {
-        const src = img.src;
-        const alt = img.alt;
+            // Функция для создания слайда с поддержкой лайтбокса
+            function createLightboxSlide(img, isClone) {
+                const src = img.src;
+                const alt = img.alt;
 
-        // Создаем обертку-ссылку для лайтбокса
-        const link = document.createElement('a');
-        link.href = src;
-        link.className = 'glightbox';
-        link.setAttribute('data-gallery', 'gallery1');
+                // Создаем обертку-ссылку для лайтбокса
+                const link = document.createElement("a");
+                link.href = src;
+                link.className = "glightbox";
+                link.setAttribute("data-gallery", "gallery1");
 
-        // Заголовок в лайтбоксе c номером скриншота, если он есть
-        let screenshotNum = alt.match(/\d+/);
-        const title = screenshotNum ? `Screenshot №${screenshotNum[0]}` : alt;
-        link.setAttribute('data-glightbox', `title: ${title}; descPosition: bottom;`);
+                // Заголовок в лайтбоксе c номером скриншота, если он есть
+                let screenshotNum = alt.match(/\d+/);
+                const title = screenshotNum
+                    ? `Screenshot №${screenshotNum[0]}`
+                    : alt;
+                link.setAttribute(
+                    "data-glightbox",
+                    `title: ${title}; descPosition: bottom;`,
+                );
 
-        // Само изображение
-        const newImg = document.createElement('img');
-        newImg.src = src;
-        newImg.alt = alt;
-        newImg.loading = 'eager';
-        if (isClone) newImg.classList.add('clone');
+                // Само изображение
+                const newImg = document.createElement("img");
+                newImg.src = src;
+                newImg.alt = alt;
+                newImg.loading = "eager";
+                if (isClone) newImg.classList.add("clone");
 
-        // Добавляем изображение в ссылку
-        link.appendChild(newImg);
+                // Добавляем изображение в ссылку
+                link.appendChild(newImg);
 
-        return link;
-    }
+                return link;
+            }
 
-    // Создаем расширенную версию клонов с поддержкой лайтбокса
-    function createInfiniteSlider() {
-        track.innerHTML = '';
+            // Создаем расширенную версию клонов с поддержкой лайтбокса
+            function createInfiniteSlider() {
+                track.innerHTML = "";
 
-        // Добавляем больше клонов для более плавного перехода
-        const clonesBefore = [];
-        const clonesAfter = [];
+                // Добавляем больше клонов для более плавного перехода
+                const clonesBefore = [];
+                const clonesAfter = [];
 
-        // Создаем по 4 комплекта клонов с каждой стороны для большей плавности
-        for (let i = 0; i < 4; i++) {
-            originalSlides.forEach(slide => {
-                const cloneBefore = createLightboxSlide(slide, true);
-                const cloneAfter = createLightboxSlide(slide, true);
-                clonesBefore.push(cloneBefore);
-                clonesAfter.push(cloneAfter);
-            });
-        }
+                // Создаем по 4 комплекта клонов с каждой стороны для большей плавности
+                for (let i = 0; i < 4; i++) {
+                    originalSlides.forEach((slide) => {
+                        const cloneBefore = createLightboxSlide(slide, true);
+                        const cloneAfter = createLightboxSlide(slide, true);
+                        clonesBefore.push(cloneBefore);
+                        clonesAfter.push(cloneAfter);
+                    });
+                }
 
-        // Оригинальные слайды
-        const middleSlides = originalSlides.map(slide => createLightboxSlide(slide, false));
+                // Оригинальные слайды
+                const middleSlides = originalSlides.map((slide) =>
+                    createLightboxSlide(slide, false),
+                );
 
-        // Собираем все слайды
-        [...clonesBefore, ...middleSlides, ...clonesAfter].forEach(slide => {
-            track.appendChild(slide);
-        });
+                // Собираем все слайды
+                [...clonesBefore, ...middleSlides, ...clonesAfter].forEach(
+                    (slide) => {
+                        track.appendChild(slide);
+                    },
+                );
 
-        return Array.from(track.children);
-    }
+                return Array.from(track.children);
+            }
 
-    let allSlides = createInfiniteSlider();
-    let currentIndex = slideCount * 4; // Начинаем с середины (после всех клонов-префиксов)
-    let isTransitioning = false;
+            let allSlides = createInfiniteSlider();
+            let currentIndex = slideCount * 4; // Начинаем с середины (после всех клонов-префиксов)
+            let isTransitioning = false;
 
-    // Touch события
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
+            // Touch события
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
 
-    function updateSlideWidth() {
-        slideWidth = allSlides[0].offsetWidth + 16; // ширина + margin
-    }
+            function updateSlideWidth() {
+                slideWidth = allSlides[0].offsetWidth + 16; // ширина + margin
+            }
 
-    function updatePosition(instant = false) {
-        if (instant) {
-            track.style.transition = 'none';
-            // Принудительный reflow для мгновенного применения
-            track.offsetHeight;
-        } else {
-            track.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-        }
+            function updatePosition(instant = false) {
+                if (instant) {
+                    track.style.transition = "none";
+                    // Принудительный reflow для мгновенного применения
+                    track.offsetHeight;
+                } else {
+                    track.style.transition =
+                        "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+                }
 
-        const translateX = -currentIndex * slideWidth;
-        track.style.transform = `translateX(${translateX}px)`;
-    }
+                const translateX = -currentIndex * slideWidth;
+                track.style.transform = `translateX(${translateX}px)`;
+            }
 
-    function handleNext() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        currentIndex++;
-        updatePosition();
+            function handleNext() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex++;
+                updatePosition();
 
-        // Проверяем нужность сброса позиции заранее
-        checkPositionEarly();
-    }
+                // Проверяем нужность сброса позиции заранее
+                checkPositionEarly();
+            }
 
-    function handlePrev() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        currentIndex--;
-        updatePosition();
+            function handlePrev() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex--;
+                updatePosition();
 
-        // Проверяем нужность сброса позиции заранее
-        checkPositionEarly();
-    }
+                // Проверяем нужность сброса позиции заранее
+                checkPositionEarly();
+            }
 
-    // Проверяем позицию во время анимации, не дожидаясь окончания
-    function checkPositionEarly() {
-        setTimeout(() => {
-            const totalSlides = allSlides.length;
-            const centerStart = slideCount * 4; // Начало центральной секции
-
-            // Если приближаемся к краю, заранее сбрасываем позицию
-            if (currentIndex >= totalSlides - slideCount * 2) {
-                // Перекидываем к центру с правого края
-                const offsetInOriginal = (currentIndex - centerStart) % slideCount;
-                currentIndex = centerStart + offsetInOriginal;
-
-                // Плавный переход к новой позиции
+            // Проверяем позицию во время анимации, не дожидаясь окончания
+            function checkPositionEarly() {
                 setTimeout(() => {
-                    track.style.transition = 'none';
+                    const totalSlides = allSlides.length;
+                    const centerStart = slideCount * 4; // Начало центральной секции
+
+                    // Если приближаемся к краю, заранее сбрасываем позицию
+                    if (currentIndex >= totalSlides - slideCount * 2) {
+                        // Перекидываем к центру с правого края
+                        const offsetInOriginal =
+                            (currentIndex - centerStart) % slideCount;
+                        currentIndex = centerStart + offsetInOriginal;
+
+                        // Плавный переход к новой позиции
+                        setTimeout(() => {
+                            track.style.transition = "none";
+                            updatePosition(true);
+
+                            // Восстанавливаем анимацию
+                            setTimeout(() => {
+                                track.style.transition =
+                                    "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+                            }, 20);
+                        }, 300);
+                    } else if (currentIndex < slideCount * 2) {
+                        // Перекидываем к центру с левого края
+                        const offsetInOriginal =
+                            (slideCount + (currentIndex % slideCount)) %
+                            slideCount;
+                        currentIndex = centerStart + offsetInOriginal;
+
+                        // Плавный переход к новой позиции
+                        setTimeout(() => {
+                            track.style.transition = "none";
+                            updatePosition(true);
+
+                            // Восстанавливаем анимацию
+                            setTimeout(() => {
+                                track.style.transition =
+                                    "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+                            }, 20);
+                        }, 300);
+                    }
+                }, 200);
+            }
+
+            function resetPosition() {
+                isTransitioning = false;
+                const totalSlides = allSlides.length;
+                const centerStart = slideCount * 4;
+
+                if (
+                    currentIndex >= totalSlides - slideCount * 2 ||
+                    currentIndex < slideCount * 2
+                ) {
+                    // Сбрасываем позицию к центру
+                    const offsetInOriginal =
+                        ((currentIndex % slideCount) + slideCount) % slideCount;
+                    currentIndex = centerStart + offsetInOriginal;
                     updatePosition(true);
-
-                    // Восстанавливаем анимацию
-                    setTimeout(() => {
-                        track.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-                    }, 20);
-                }, 300);
-            } else if (currentIndex < slideCount * 2) {
-                // Перекидываем к центру с левого края
-                const offsetInOriginal = (slideCount + (currentIndex % slideCount)) % slideCount;
-                currentIndex = centerStart + offsetInOriginal;
-
-                // Плавный переход к новой позиции
-                setTimeout(() => {
-                    track.style.transition = 'none';
-                    updatePosition(true);
-
-                    // Восстанавливаем анимацию
-                    setTimeout(() => {
-                        track.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-                    }, 20);
-                }, 300);
+                }
             }
-        }, 200);
-    }
 
-    function resetPosition() {
-        isTransitioning = false;
-        const totalSlides = allSlides.length;
-        const centerStart = slideCount * 4;
+            // Обработчики событий
+            track.addEventListener("transitionend", resetPosition);
 
-        if (currentIndex >= totalSlides - slideCount * 2 || currentIndex < slideCount * 2) {
-            // Сбрасываем позицию к центру
-            const offsetInOriginal = ((currentIndex % slideCount) + slideCount) % slideCount;
-            currentIndex = centerStart + offsetInOriginal;
-            updatePosition(true);
-        }
-    }
+            nextBtn.addEventListener("click", handleNext);
+            prevBtn.addEventListener("click", handlePrev);
 
-    // Обработчики событий
-    track.addEventListener('transitionend', resetPosition);
-
-    nextBtn.addEventListener('click', handleNext);
-    prevBtn.addEventListener('click', handlePrev);
-
-    // Touch события для свайпов с фиксированной прокруткой
-    sliderContainer.addEventListener('touchstart', (e) => {
-        if (isTransitioning) return;
-        startX = e.touches[0].clientX;
-        isDragging = true;
-        // Добавляем класс для отключения событий клика при свайпе
-        e.target.closest('.slider-track-container').classList.add('swiping');
-    }, { passive: true });
-
-    sliderContainer.addEventListener('touchmove', (e) => {
-        if (!isDragging || isTransitioning) return;
-        currentX = e.touches[0].clientX;
-        // Фиксированная прокрутка - не следуем за пальцем
-    }, { passive: true });
-
-    sliderContainer.addEventListener('touchend', (e) => {
-        if (!isDragging || isTransitioning) return;
-
-        isDragging = false;
-        const diffX = currentX - startX;
-        const threshold = slideWidth * 0.15;
-
-        // Убираем класс свайпа
-        e.target.closest('.slider-track-container').classList.remove('swiping');
-
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0) {
-                handlePrev(); // Фиксированное движение на один слайд влево
-            } else {
-                handleNext(); // Фиксированное движение на один слайд вправо
-            }
-        } else {
-            isTransitioning = false;
-        }
-
-        startX = 0;
-        currentX = 0;
-    });
-
-    // Предварительная подготовка следующих позиций
-    function preloadPositions() {
-        // Принудительно вычисляем размеры для всех слайдов
-        allSlides.forEach(slide => {
-            slide.style.willChange = 'transform';
-            // Предзагрузка изображений
-            const img = slide.querySelector('img');
-            if (img) {
-                img.loading = 'eager';
-            }
-        });
-    }
-
-    // Обработка изменения размера окна
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            updateSlideWidth();
-            updatePosition(true);
-            preloadPositions();
-        }, 100);
-    });
-
-    // Инициализация лайтбокса
-    function initLightbox() {
-        if (window.GLightbox) {
-            const lightbox = GLightbox({
-                selector: '.glightbox',
-                touchNavigation: true,
-                loop: true,
-                autoplayVideos: false,
-                zoomable: true,
-                draggable: true,
-                height: 'auto',
-                // Явно указываем, что элементы навигации должны быть видны
-                closeButton: true,
-                touchFollowAxis: true,
-                keyboardNavigation: true,
-                closeOnOutsideClick: true,
-                // Настройки внешнего вида
-                cssEfects: {
-                    fade: {in: 'fadeIn', out: 'fadeOut'}
+            // Touch события для свайпов с фиксированной прокруткой
+            sliderContainer.addEventListener(
+                "touchstart",
+                (e) => {
+                    if (isTransitioning) return;
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    // Добавляем класс для отключения событий клика при свайпе
+                    e.target
+                        .closest(".slider-track-container")
+                        .classList.add("swiping");
                 },
-                svg: {
-                    close: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>',
-                    next: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>',
-                    prev: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>'
+                { passive: true },
+            );
+
+            sliderContainer.addEventListener(
+                "touchmove",
+                (e) => {
+                    if (!isDragging || isTransitioning) return;
+                    currentX = e.touches[0].clientX;
+                    // Фиксированная прокрутка - не следуем за пальцем
+                },
+                { passive: true },
+            );
+
+            sliderContainer.addEventListener("touchend", (e) => {
+                if (!isDragging || isTransitioning) return;
+
+                isDragging = false;
+                const diffX = currentX - startX;
+                const threshold = slideWidth * 0.15;
+
+                // Убираем класс свайпа
+                e.target
+                    .closest(".slider-track-container")
+                    .classList.remove("swiping");
+
+                if (Math.abs(diffX) > threshold) {
+                    if (diffX > 0) {
+                        handlePrev(); // Фиксированное движение на один слайд влево
+                    } else {
+                        handleNext(); // Фиксированное движение на один слайд вправо
+                    }
+                } else {
+                    isTransitioning = false;
                 }
+
+                startX = 0;
+                currentX = 0;
             });
-        } else {
-            setTimeout(initLightbox, 200);
-        }
-    }
 
-    // Инициализация
-    function init() {
-        updateSlideWidth();
-        updatePosition(true);
-        preloadPositions();
-        initLightbox();
+            // Предварительная подготовка следующих позиций
+            function preloadPositions() {
+                // Принудительно вычисляем размеры для всех слайдов
+                allSlides.forEach((slide) => {
+                    slide.style.willChange = "transform";
+                    // Предзагрузка изображений
+                    const img = slide.querySelector("img");
+                    if (img) {
+                        img.loading = "eager";
+                    }
+                });
+            }
 
-        // Добавляем небольшую задержку для стабилизации
-        setTimeout(() => {
-            track.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-        }, 100);
+            // Обработка изменения размера окна
+            let resizeTimeout;
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateSlideWidth();
+                    updatePosition(true);
+                    preloadPositions();
+                }, 100);
+            });
 
-        // Отслеживаем изменение системной темы
-        if (window.matchMedia) {
-            const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-            darkModeMediaQuery.addEventListener('change', (e) => {
-                // Обновляем тему лайтбокса при изменении системной темы
+            // Инициализация лайтбокса
+            function initLightbox() {
                 if (window.GLightbox) {
-                    const lightbox = GLightbox();
-                    lightbox.destroy();
-                    initLightbox();
+                    const lightbox = GLightbox({
+                        selector: ".glightbox",
+                        touchNavigation: true,
+                        loop: true,
+                        autoplayVideos: false,
+                        zoomable: true,
+                        draggable: true,
+                        height: "auto",
+                        // Явно указываем, что элементы навигации должны быть видны
+                        closeButton: true,
+                        touchFollowAxis: true,
+                        keyboardNavigation: true,
+                        closeOnOutsideClick: true,
+                        // Настройки внешнего вида
+                        cssEfects: {
+                            fade: { in: "fadeIn", out: "fadeOut" },
+                        },
+                        svg: {
+                            close: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>',
+                            next: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>',
+                            prev: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>',
+                        },
+                    });
+                } else {
+                    setTimeout(initLightbox, 200);
                 }
+            }
+
+            // Инициализация
+            function init() {
+                updateSlideWidth();
+                updatePosition(true);
+                preloadPositions();
+                initLightbox();
+
+                // Добавляем небольшую задержку для стабилизации
+                setTimeout(() => {
+                    track.style.transition =
+                        "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+                }, 100);
+
+                // Отслеживаем изменение системной темы
+                if (window.matchMedia) {
+                    const darkModeMediaQuery = window.matchMedia(
+                        "(prefers-color-scheme: dark)",
+                    );
+                    darkModeMediaQuery.addEventListener("change", (e) => {
+                        // Обновляем тему лайтбокса при изменении системной темы
+                        if (window.GLightbox) {
+                            const lightbox = GLightbox();
+                            lightbox.destroy();
+                            initLightbox();
+                        }
+                    });
+                }
+            }
+
+            // Запускаем после загрузки DOM
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", init);
+            } else {
+                init();
+            }
+
+            // Дополнительная инициализация после полной загрузки
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    updateSlideWidth();
+                    updatePosition(true);
+                    preloadPositions();
+                    initLightbox();
+                }, 100);
             });
-        }
-    }
 
-    // Запускаем после загрузки DOM
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
-
-    // Дополнительная инициализация после полной загрузки
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            updateSlideWidth();
-            updatePosition(true);
-            preloadPositions();
-            initLightbox();
-        }, 100);
-    });
-
-    // Добавляем плавность через CSS для лучшей производительности
-    const style = document.createElement('style');
-    style.textContent = `
+            // Добавляем плавность через CSS для лучшей производительности
+            const style = document.createElement("style");
+            style.textContent = `
             .slider-track {
                 will-change: transform;
             }
@@ -945,7 +1103,7 @@
                 color: var(--background) !important;
             }
         `;
-    document.head.appendChild(style);
-</script>
-</body>
+            document.head.appendChild(style);
+        </script>
+    </body>
 </html>
